@@ -36,7 +36,7 @@ or
 
 $ tmux new
 
-![](0tmux.png)
+![](images/0tmux.png)
 
 The above command brings you into tmux. You can see the command prompt and on the bottom of the terminal on the green bar you have something like [0] 0:bash\*. The [0] says that you are in the first session and this session can be named (we'll see this in the next part). The 0 following this says that we are in the first window. The asterisk after **bash** indicates that this is your active window. Once you are inside a tmux session, you can start using the terminal in much the same way as you would a normal bash terminal, assuming you are using the bash shell. So, we are now inside a tmux session with one window and one pane. 
 
@@ -45,7 +45,7 @@ For performing actions within Tmux, we use the prefix: Ctrl-b. For splitting the
 
 Ctrl-b %
 
-![](1tmux.png)
+![](images/1tmux.png)
 
 In the above figure, there are now two panes and I am trying to open a file with vim but do not execute the command. I want to switch back to the left pane before that. So, to switch panes:
 
@@ -53,13 +53,13 @@ Ctrl-b left-arrow
 
 This moves the focus back to the left pane as shown in the figure below.
 
-![](2tmux.png)
+![](images/2tmux.png)
 
 I now split the left pane horizontally so that we have two panes on the left and one on the right, where a python script is now open. For splitting the pane horizontally we do:
 
 Ctrl-b " (single double quote)
 
-![](3tmux_3panes.png)
+![](images/3tmux_3panes.png)
 
 Here, I want to impress on the fact that vim can be configured (solarized colour scheme with light background, in this case) within tmux. Tmux and Vim together can make the terminal a powerful IDE.
 
@@ -140,9 +140,9 @@ Ctrl-b ?
 
 #### This is my environment on a remote server
 
-![](4tmux_server.png)
+![](images/4tmux_server.png)
 
-The above figure, the lower pane shows the dates and times when the different sessions were created and on the lower right corner on the green status bar, the time at which the screenshot was taken is shown.
+In the figure above, the lower pane shows the dates and times when the different sessions were created and on the lower right corner on the green status bar, the time at which the screenshot was taken is shown.
 
 One interesting thing I hope you would have noticed is that we can perform any and all required actions without ever having to move away from the keyboard for using a mouse making it a pretty powerful environment indeed. 
 
