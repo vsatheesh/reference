@@ -28,6 +28,26 @@ Ubuntu or Debian:
 
 $ sudo apt install tmux
 
+CentOS or Fedora
+
+$ sudo yum install tmux
+
+Installation from source:
+
+Taking the tmux-3.1b version as an example:
+
+```{r, echo=TRUE, eval = F}
+$ cd ~/src
+
+$ wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
+
+$ tar -zxvf tmux-3.1b.tar.gz
+
+$ cd tmux-3.1b/
+
+$ ./configure --prefix=$HOME/opt
+```
+
 Now that we have tmux installed, let us try it out. Open a terminal and type 
 
 $ tmux
@@ -40,8 +60,7 @@ $ tmux new
 
 The above command brings you into tmux. You can see the command prompt and on the bottom of the terminal on the green bar you have something like [0] 0:bash\*. The [0] says that you are in the first session and this session can be named (we'll see this in the next part). The 0 following this says that we are in the first window. The asterisk after **bash** indicates that this is your active window. Once you are inside a tmux session, you can start using the terminal in much the same way as you would a normal bash terminal, assuming you are using the bash shell. So, we are now inside a tmux session with one window and one pane. 
 
-**Split Screen into 2 Panes**
-
+#### Split Screen into 2 Panes:
 For performing actions within Tmux, we use the prefix: Ctrl-b. For splitting the window into panes vertically we do:
 
 Ctrl-b %
@@ -68,7 +87,7 @@ You can also switch between Panes by:
 
 Ctrl-b o
 
-**List sessions**
+#### List sessions
 
 $ tmux ls
 
@@ -86,7 +105,7 @@ test: 1 windows (created Wed May 20 14:30:55 2020)
 
 So, now we have two sessions, 0 and test and 0 is attached.
 
-**Detach from Session**
+#### Detach from Session:
 
 Ctrl-b d
 
@@ -99,13 +118,13 @@ test: 1 windows (created Wed May 20 14:30:55 2020)
 
 Both sessions are detached now.
 
-**Re-attach to a Session**
+#### Re-attach to a Session:
 
 tmux attach -t test
 
 Now that we are inside the test session, let us create windows.
 
-**Create new Window**
+#### Create new Window:
 
 Ctrl-b c
 
@@ -119,13 +138,13 @@ test: 2 windows (created Wed May 20 14:30:55 2020) (attached)
 
 We have 2 windows in the test session. 
 
-**Switch between Windows**
+#### Switch between Windows:
 
 Ctrl-b p  # previous Window
 
 Ctrl-b n  # next Window
 
-**Switch between Sessions**
+### Switch between Sessions:
 
 tmux switch -t 0
 
@@ -135,25 +154,21 @@ Ctrl-b (      # switch the previous session
 
 Ctrl-b )      # the next session
 
-**List all commands**
+#### List all commands:
 
 Ctrl-b ?   
 
-**This is my environment on a remote server**
+#### This is my environment on a remote server
 
 ![](images/4tmux_server.png)
 
-In the figure above, the lower pane shows the dates and times when the different sessions were created and on the lower right corner on the green status bar, the time at which the screenshot was taken is shown.
+The above figure, the lower pane shows the dates and times when the different sessions were created and on the lower right corner on the green status bar, the time at which the screenshot was taken is shown.
 
 One interesting thing I hope you would have noticed is that we can perform any and all required actions without ever having to move away from the keyboard for using a mouse making it a pretty powerful environment indeed. 
 
-----------------------------------------------------------------------------------------------------------------------------
-### What appears below is additional information
-
-**Rename current session from within Tmux**
+#### Rename current session from within Tmux:
 
 $ tmux rename-session [new_name]
 
-**List out the named sessions
+$ tmux list-sessions # list named sessions
 
-$ tmux list-sessions
