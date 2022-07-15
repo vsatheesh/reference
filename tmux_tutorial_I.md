@@ -37,20 +37,21 @@ how to manage multiple sessions and windows.
 ### Installing Tmux
 
 Installing on a Mac:
-
+```
 $ brew install tmux
-
+```
 Ubuntu or Debian:
-
+```
 $ sudo apt install tmux
-
+```
 CentOS or Fedora
-
+```
 $ sudo yum install tmux
-
+```
 Installation from source:
-
+```
 Taking the tmux-3.1b version as an example:
+```
 
 ``` r
 $ cd ~/src
@@ -66,11 +67,11 @@ $ ./configure --prefix=$HOME/opt
 
 Now that we have tmux installed, let us try it out. Open a terminal and
 type
-
+```
 $ tmux
-
+```
 or
-
+```
 $ tmux new
 
 ![](images/0tmux.png)
