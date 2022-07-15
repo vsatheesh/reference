@@ -73,7 +73,7 @@ $ tmux
 or
 ```
 $ tmux new
-
+```
 ![](images/0tmux.png)
 
 The above command brings you into tmux. You can see the command prompt
