@@ -1,0 +1,324 @@
+---
+title: "A Brief Introduction to R"
+author: "Viswanathan Satheesh"
+date: "`r Sys.Date()`" 
+output: pdf_document
+---
+## Basic operations
+Some very basic operations you can can carry out in R. 
+
+```{r}
+1 + 1 # addition
+2 - 1 # subtraction
+2 * 2 # multiplication
+6 / 2 # division
+3 ** 2 # exponential
+3 ^ 2 # exponential
+```
+Here R works like a calculator. Apart from numbers, R can also help us print letters or a string of letters. 
+
+```{r}
+"a"
+"language"
+"R is my favourite programming language"
+```
+
+When working with large numbers such as **1934929292** and **23992343**, we cannot keep them in mind, or for that matter, remember complex computations. So, we have the concept of object or variable. 
+
+```{r}
+a <- 1934929292
+b <- 23992343
+```
+Here, we assign "<-" the first number to "a" and the second to "b". The "<-" is called the "assignment operator". "a" and "b" are called objects or variables. This now enables us to actually use the variables for doing further operations as seen below.
+
+```{r}
+a + b
+a - b
+a * b
+a ^ b
+```
+We can do something similar with strings too. 
+```{r}
+x <- "language"
+y <- "R is my favourite programming language"
+```
+
+```{r}
+print(x)
+print(y)
+```
+
+## Creating a vector
+In R, vectors are the most basic data objects. Let us create vectors **x** and **y**. We will do that in two ways. One, using the *c()* function, and the other using the *seq()* function. 'c' combines values into a vector. 'seq' is a sequence generator.  
+
+```{r}
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+y <- seq(11, 20)
+x
+y
+```
+The code above creates two vectors, **x** and **y**. Adding the two vectors gives:
+
+
+```{r}
+x + y
+```
+The elements are added element-wise. The operations in R are element-wise. As an exercise you can try doing the other mathematical
+operations on the two vectors. 
+
+## Indexing
+The elements in the vectors are indexed. So, to extract an element you need only know its position. To extract the first element in x and in y:
+
+```{r}
+x[1]
+```
+This returns **1**. Try the following and see what you get. 
+
+```{r}
+y[1:4]
+y[c(1, 3, 5)]
+y[c(-1, -3, -5)]
+y[-c(1, 3, 5)]
+```
+## Data types
+
+What are the important data types? They can be listed as:
+
+* **integer**
+* **numeric**
+* **logical**
+* **character**
+Let us first create some vectors
+
+```{r}
+n <- 1 # numeric
+i <- 1L # integer
+l <- TRUE # logical
+c <- "Some string" #character
+```
+Here we have four vectors created. x is a numeric vector, y an integer vector, t a logical vector, and c is a character vector. Remember, in R everything is a vector. There are no scalars. Therefore, all these vectors that we have created are all vectors of length one. To check the length of the vector, use the length() function:
+
+```{r}
+length(n)
+length(i)
+length(l)
+length(c)
+```
+You can see that all objects created are of length one. 
+
+Now let us check these vectors using the *class()* function:
+```{r}
+class(x)
+class(y)
+class(t)
+class(c)
+```
+Now let us create vectors of length > 1
+```{r}
+num_vr <- c(1, 3.0, 5.0) # numeric vector
+int_vr <- c(1L, 3L, 5L) # integer vector
+log_vr <- c(TRUE, FALSE, TRUE) # logical vector
+char_vr <- c("I am", "a", "string.") # character vector
+```
+Now get their class.
+```{r}
+class(num_vr); length(num_vr)
+class(int_vr); length(int_vr)
+class(log_vr); length(log_vr)
+class(char_vr); length(char_vr)
+```
+We learnt to make vectors before, and now we have learnt to understand them a bit more. We now move on to matrices.
+First, let us create some vectors. 
+```{r}
+v1 <- 1:5
+v2 <- 6:10
+v3 <- 11:15
+```
+We have three vectors v1, v2, and v3 and we are going to bind them column-wise.
+```{r}
+cbind(v1, v2, v3)
+```
+The output just spews out to the console, which is not helpful. Let us create a variable, my_mat, and store the output
+```{r}
+my_mat <- cbind(v1, v2, v3)
+my_mat
+```
+Here, we used a function, cbind(), to bind three vectors into three columns. Now let us use the class function on the my_mat variable.
+```{r}
+class(my_mat)
+```
+my_matrix is a matrix. It has three columns, v1, v2, and v3. And, as it should be clear now, we used three vectors to create a matrix. Let us now see an alternate method for creating a matrix. 
+```{r}
+trial_mat <- matrix(1:20, nrow=4, ncol=5)
+trial_mat
+```
+
+This creates a matrix with 4 rows and 5 columns. The [1,] refers to the first row. The [,1] refers to the first column. 
+
+Let us now talk about another kind of data structure, data frame. So, a data frame is similar to a matrix, but it can hold vectors of different classes. Let us re-create the same vectors we created in the previous session. 
+
+```{r}
+num_vr <- c(1, 3.0, 5.0) # numeric vector
+int_vr <- c(1L, 3L, 5L) # integer vector
+log_vr <- c(TRUE, FALSE, TRUE) # logical vector
+char_vr <- c("I am", "a", "string.") # character vector
+
+# Let us use the cbind() function to put them together.
+
+new_mat <- cbind(num_vr, int_vr, log_vr, char_vr)
+new_mat
+```
+Looking at the output, we know that it is something we do not want. What is the class of the new variable?
+
+```{r}
+class(new_mat)
+```
+The class of the object new_mat is "matrix". A matrix can hold data belonging to a particular class. In this case, every data point is converted into a character. This is called coercion. Here we need a different kind of data structure that can hold different classes of data. To demostrate this point, let us create some vectors that we will make use of in creating this structure. 
+
+```{r}
+set.seed(1234) # since the numbers are random, this will make sure we always 
+              # get the same set of random numbers
+plant_height <- rnorm(100, 110, 10)
+head(plant_height)
+```
+
+```{r}
+# Too many decimals. Let us round it off to two.
+plant_height <- round(plant_height, 2)
+head(plant_height)
+```
+
+```{r}
+set.seed(237)
+flowering_50 <- round(rnorm(100, 100, 10))
+head(flowering_50)
+```
+
+```{r}
+set.seed(6438)
+spikelet_fertility <- round(rnorm(100, 90, 3), 2)
+head(spikelet_fertility)
+max(spikelet_fertility)
+```
+
+```{r}
+set.seed(345)
+thousand_seed_weight <- round(rnorm(100, 22, 3), 2)
+head(thousand_seed_weight)
+```
+
+Now let us combine the four vectors into a single data structure.
+
+```{r}
+my_data <- cbind(plant_height, flowering_50, spikelet_fertility, thousand_seed_weight)
+head(my_data)
+class(my_data)
+```
+
+Let us now create some numbers that we will use as genotype ids. We have 100 observations and that makes it 100 genotypes. We will name the genotypes from "001" to "100". Let us use the paste() function to create these ids. 
+
+```{r}
+a1 <- paste("00", 1:9, sep = "")
+a1
+a2 <- paste("0", 10:99, sep = "")
+a2
+genotypes <- c(a1, a2, 100)
+genotypes
+```
+
+Let us add this vector to our my_data object.
+
+```{r}
+newdat <- cbind(genotypes, my_data)
+head(newdat)
+```
+
+We have seen this problem before; the entire data getting converted into a character class. To overcome this problem we use the data.frame() function. 
+
+```{r}
+field_data <- data.frame(genotypes, my_data)
+head(field_data)
+```
+
+This output is more like it. Let us check the class of the df object.
+
+```{r}
+class(field_data)
+```
+
+It is a dataframe. A dataframe, unlike a matrix, can hold vectors of different classes. Using the most important function in R, str(), we get a glimpse of what the field object contains.
+
+```{r}
+str(field_data)
+```
+
+The "field" object is a data frame with 100 observations and 4 variables. Except for a, which is a factor, plant_height, flowering_50, and spikelet_fertility are numeric. Remember that 'a' is a vector containing the genotype ids. Therefore, "a" is recognised as a factor here. 
+
+### Writing data to file
+```{r}
+write.csv(field_data, "field_data.csv", quote = F, row.names = F)
+```
+
+### Plotting
+### Creating a mirror plot
+
+In this section we will see how to make the plot shown below.
+
+![](degs.png)
+Reading data in:
+
+```{r}
+gene_nums_mirror <- read.csv( "up_down_gene_numbers.csv" )
+gene_nums_mirror
+```
+
+This data set has three columns and 10 rows. It is about differentially expressed genes under different stress conditions. So, let us start plotting with *ggplot2*.
+
+```{r}
+library( ggplot2 )
+ggplot(data = gene_nums_mirror, aes(x = stress, y = num_genes)) +
+  geom_bar(stat = "identity")
+  geom_bar( stat = "identity", position = "identity", width = 0.65 )
+```
+
+
+
+```{r}
+gene_nums_mirror$num_genes[gene_nums_mirror$responsiveness=="down"] <- -gene_nums_mirror$num_genes[gene_nums_mirror$responsiveness=="down"]
+gene_nums_mirror
+```
+
+```{r}
+ggplot(data = gene_nums_mirror, aes(x = stress, y = num_genes)) +
+  geom_bar(stat = "identity", width = 0.65)
+```
+
+```{r}
+ggplot(data = gene_nums_mirror, aes(x = stress, y = num_genes,
+                                    fill = responsiveness)) +
+  geom_bar(stat = "identity", width = 0.65) +
+  theme_classic(base_size = 18) +
+  ylab("Number of genes") +
+  ggtitle("Differentially expressed genes")
+```
+The final code snippet:
+
+```{r}
+library( ggplot2 )
+library( wesanderson )
+
+gene_nums_mirror <- dplyr::mutate( gene_nums_mirror, 
+                            responsiveness = forcats::fct_relevel(responsiveness, "up", "down"))
+
+ggplot(data = gene_nums_mirror, aes(x = stress, y = num_genes, 
+                                    fill = factor(responsiveness, 
+                                                  labels = c("Up-regulated", "Down-regulated")))) +
+  labs(fill = "responsiveness") +
+  geom_bar( stat = "identity", position = "identity", width = 0.65 ) +
+  ylab("Number of genes") +
+  theme_classic(base_size = 18) +
+  ggtitle("Differential Expression of genes") +
+  geom_text(aes(label = num_genes), vjust = ifelse(gene_nums_mirror$num_genes>0, 0,1), colour = "black") +
+  scale_y_continuous(breaks=seq(-3000,1800,by=400),labels=abs(seq(-3000,1800,by=400))) +
+  scale_fill_manual(values = wes_palette(n=2, name = "GrandBudapest2"))
+```
